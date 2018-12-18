@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
+## Required dependecy
+npm install --save amazon-cognito-identity-js<br>
+npm i aws-sdk<br>
+npm install ng2-order-pipe --save<br>
+npm i ng2-search-filter --save<br>
+npm install ngx-pagination --save<br>
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
