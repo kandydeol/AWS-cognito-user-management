@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
-## Required dependecy
+## Required dependency
 npm install --save amazon-cognito-identity-js<br>
 npm i aws-sdk<br>
 npm install ng2-order-pipe --save<br>
