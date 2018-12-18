@@ -1,0 +1,99 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <div style="    font-weight: bold;text-align: center">{{submitButtontext}}</div>
+            <hr>
+            <form class="form-signin" (ngSubmit)="register(regform)" #regform="ngForm">
+              <div class="form-label">
+                <label for="inputEmail">Full Name<span style="color: red;font-size: 18px;">*</span></label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="name" id="name" #Username="ngModel" ngModel class="form-control" [(ngModel)]="fullName"
+                  required style="padding-left: 15px;">
+              </div>
+              <div class="form-label">
+                <label for="inputPassword">Email<span style="color: red;font-size: 18px;">*</span></label>
+              </div>
+              <div class="form-label-group">
+                <input type="email" name="email" id="email" #emailId="ngModel" ngModel class="form-control" [(ngModel)]="mailID"
+                  style="padding-left: 15px;" required email>
+              </div>
+              <div class="form-label">
+                <label for="inputPassword">Address</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="address" id="address" #address="ngModel" ngModel class="form-control"
+                  [(ngModel)]="userAddress" style="padding-left: 15px;">
+              </div>
+              <div class="form-label" *ngIf="showPassword">
+                <label for="inputPassword">Password<span style="color: red;font-size: 18px;">*</span></label>
+              </div>
+              <div class="form-label-group" *ngIf="showPassword">
+                <input type="password" name="password" id="password" #password="ngModel" ngModel class="form-control"
+                  [(ngModel)]="userPassword" style="padding-left: 15px;" minlength="5" required>
+                <span>
+                  <div style="position: absolute;top: 1%;right: 0%;height: 34px;width: 39px;" class="btn btn-default btn-md"
+                    id="showhide" data-val='1' (click)="pwdShowHide()"><span id='eye' class="glyphicon glyphicon-eye-close"></span></div>
+                </span>
+              </div>
+              <div class="form-label">
+                <label for="emailNotification">Email Notification </label>
+                <input type="checkbox" name="emailNotification" id="emailNotification" [(ngModel)]="userEmailNotification"
+                  #emailNotification="ngModel" ngModel style="margin-left: 6px;">
+                <span style="    margin-left: 70px;"></span>
+                <label for="smsNotification">SMS Notification </label>
+                <input type="checkbox" name="smsNotification" id="smsNotification" (click)="checkboxClicked($event)"
+                  [(ngModel)]="userSmsNotification" #smsNotification="ngModel" ngModel style="margin-left: 6px;">
+              </div>
+              <div class="form-label" *ngIf="filter">
+                <label for="phoneNumber">Phone Number</label>
+              </div>
+              <div class="form-label-group" *ngIf="filter">
+                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" style="padding-left: 15px;"
+                  [(ngModel)]="userPhoneNumber" #phoneNumber="ngModel" ngModel>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="!regform.valid">{{submitButtontext}}</button>
+
+              <hr class="my-4">
+              <a routerLink="/Home" (click)='refresh()'>Go to Dashboard</a> /
+              <a routerLink="/userlist">User list</a>
+            </form>
+            <div class="alert alert-danger" *ngIf="errorMessage!=null">
+              <strong>Alert !</strong> {{errorMessage}}
+            </div>
+            <div class="alert alert-success" *ngIf="sucessMessage">
+              <strong>Alert !</strong> {{sucessMessage}}
+            </div>
+            <!-- <div class="alert alert-danger" *ngIf="Username.touched && Username.errors">
+                            <div *ngIf="Username.errors.required">
+                                <strong>Alert !</strong><span>Please enter full name</span>
+                            </div>
+
+                        </div>
+                        <div class="alert alert-danger" *ngIf="emailId.touched && emailId.errors">
+                            <div *ngIf="emailId.errors.required">
+                                <strong>Alert !</strong><span>Please enter e-mail Id</span>
+                            </div>
+                            <div *ngIf="emailId.errors.email"><strong>Alert !</strong>Email must be a valid email
+                                address</div>
+                        </div>
+                        
+                        <div class="alert alert-danger" *ngIf="password.touched && password.errors">
+                            <div *ngIf="password.errors.required">
+                                <strong>Alert !</strong><span>Please enter Password</span>
+                            </div>
+                            <div *ngIf="password.errors.minlength">
+                                <strong>Alert !</strong><span>Please enter minimum 5 characters </span>
+                            </div>
+                        </div> -->
+
+            <!-- {{d|json}} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

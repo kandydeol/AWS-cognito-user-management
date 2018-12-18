@@ -1,0 +1,54 @@
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+               <div class="card-body">
+                  <div style="    font-weight: bold;text-align: center">Login</div>
+                  <hr>
+                  <form class="form-signin" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                     <div class="form-label">
+                        <label for="inputEmail">Username</label>
+                     </div>
+                     <div class="form-label-group">
+                        <input type="email" name="email" id="email" #UserName="ngModel" ngModel class="form-control"
+                           required style="padding-left: 15px;">
+                     </div>
+                     <div class="form-label">
+                        <label for="inputPassword">Password</label>
+                     </div>
+                     <div class="form-label-group">
+                        <input type="password" name="Password" id="password" #Password="ngModel" ngModel class="form-control"
+                           style="padding-left: 15px;" minlength="3" required>
+                        <span>
+                           <div style="position: absolute;top: 1%;right: 0%;height: 34px;width: 39px;" class="btn btn-default btn-md"
+                              id="showhide" data-val='1' (click)="pwdShowHide()"><span id='eye' class="glyphicon glyphicon-eye-close"></span></div>
+                        </span>
+                     </div>
+                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="!f.valid">Sign
+                        in</button>
+                     <hr class="my-4">
+                     <a routerLink="/forgotpassword" style="font-weight: 700;" class="cursorHand">Forgot Password</a>
+                  </form>
+                  <div class="alert alert-danger" *ngIf="errorMessage!=null">
+                     <strong>Alert !</strong> {{errorMessage}}
+                  </div>
+                  <div class="alert alert-danger" *ngIf="UserName.touched && UserName.errors">
+                     <div *ngIf="UserName.errors.required">
+                        <strong>Alert !</strong><span>Please enter User name</span>
+                     </div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="Password.touched && Password.errors">
+                     <div *ngIf="Password.errors.required">
+                        <strong>Alert !</strong><span>Please enter Password</span>
+                     </div>
+                     <div *ngIf="Password.errors.minlength">
+                        <strong>Alert !</strong><span>Please enter minimum 5 characters </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>

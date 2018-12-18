@@ -1,0 +1,17 @@
+
+<nav class="navbar navbar-default" *ngIf="isLoggedIn">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" >Cognito</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a  routerLink="/changepassword" routerLinkActive="active" >Change Password</a></li>
+        <li><a routerLink="/registeruser" routerLinkActive="active"  >Register User</a></li>
+        <li><a  routerLink="/userlist" routerLinkActive="active" >User List</a></li>
+        <li><a  (click)="logOut()"   class="cursorHand" routerLinkActive="active" >Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+<router-outlet></router-outlet>
+

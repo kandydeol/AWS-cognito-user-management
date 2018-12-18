@@ -1,0 +1,97 @@
+
+<body>
+
+  <h2 style="    color: #fdfdfd;padding-left: 19px;padding-top: 8px;">User List</h2>
+  <div class="alert alert-success" *ngIf="msgs">
+    <strong>Alert!</strong> {{msgs}}
+  </div>
+  <div class="graph-scroll-content" style="    border-radius: 20px;">
+    <div>
+      <table class="table">
+        <thead>
+          <tr style="background-color: white">
+            <td attr.colspan="{{columnCount}}">
+              <input type="text" placeholder="Search " class="form-control" [(ngModel)]='filter'>
+            </td>
+          </tr>
+          <tr style="background-color: white">
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('Name')">
+              Name
+              <span class="glyphicon sort-icon" *ngIf="key=='Name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('Mail')">
+              Email
+              <span class="glyphicon sort-icon" *ngIf="key=='Mail'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('Roles')">
+              Role
+              <span class="glyphicon sort-icon" *ngIf="key=='Roles'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('UserStatus')">
+              User Status
+              <span class="glyphicon sort-icon" *ngIf="key=='UserStatus'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('UserCreateDate')">
+              Creation Date
+              <span class="glyphicon sort-icon" *ngIf="key=='UserCreateDate'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('EmailNotification')">
+              Email Notification
+              <span class="glyphicon sort-icon" *ngIf="key=='EmailNotification'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('SmsNotification')">
+              SMS Notification
+              <span class="glyphicon sort-icon" *ngIf="key=='SmsNotification'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}} (click)="sort('PhoneNumber')">
+              Phone Number
+              <span class="glyphicon sort-icon" *ngIf="key=='PhoneNumber'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th scope="col" attr.width={{tblWidth}}>
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: white" *ngFor="let tableData of dataArray| orderBy: key : reverse | filter:filter| paginate: { itemsPerPage: 10, currentPage: p };">
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.Name}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.Mail}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.Roles}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.UserStatus}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.UserCreateDate | date: 'dd/MM/yyyy' }}
+              ({{tableData.UserCreateDate | date:'shortTime' }})</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.EmailNotification}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.SmsNotification}}</td>
+            <td scope="row" attr.width={{tblWidth}}> {{tableData.PhoneNumber}}</td>
+            <td attr.width={{tblWidth}}> <a (click)="confirm(tableData.Mail)" class="cursorHand" style="color: #0a2235;font-weight: bold;">Delete</a>
+              / <a (click)="editUser(tableData.Name
+              +'^'+tableData.Mail
+              +'^'+tableData.Roles
+              +'^'+tableData.UserStatus
+              +'^'+tableData.UserCreateDate
+              +'^'+tableData.EmailNotification
+              +'^'+tableData.SmsNotification
+              +'^'+tableData.PhoneNumber
+              +'^'+tableData.Address)"
+                class="cursorHand" style="color: #0a2235;font-weight: bold;">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+        <tr style="background-color: white">
+          <td attr.colspan="{{columnCount}}">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="    position: absolute;
+    top: 520px;
+    left: 20px;    color: #007ad9;
+    text-decoration: none;
+    font-weight: bold;">
+    <a routerLink="hHome" >Go to Dashboard</a> / <a class="cursorHand" (click)="addNewUser()">Add
+      new user</a>
+  </div>
+
+</body>

@@ -1,0 +1,46 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <span style="    font-weight: bold;padding-left: 34%;">User code Verfication</span>
+            <hr>
+            <form class="form-signin" (ngSubmit)="register(form)" #form="ngForm">
+              <div class="form-label" *ngIf="email===null">
+                <label for="inputEmail">Email-Id</label>
+              </div>
+              <div class="form-label-group" *ngIf="email===null">
+                <input id="email" onkeyup="this.value = this.value.toLowerCase();" type="email" maxlength="50" class="form-control"
+                  [(ngModel)]="email" style="padding-left: 15px;">
+              </div>
+              <div class="form-label">
+                <label for="inputPassword">Confirmation Code</label>
+              </div>
+              <div class="form-label-group">
+                <input type="password" name="Code" id="Code" #Code="ngModel" ngModel class="form-control" style="padding-left: 15px;"
+                  required>
+                <span>
+                  <div style="position: absolute;top: 1%;right: 0%;height: 34px;width: 39px;" class="btn btn-default btn-md"
+                    id="showhide" data-val='1' (click)="codeShowHide()"><span id='eye' class="glyphicon glyphicon-eye-close"></span></div>
+                </span>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="!form.valid" id="confirmRegistration">Verify</button>
+              <hr class="my-4">
+              <a routerLink="/signin" style="font-weight: 700;" class="cursorHand"> Login</a>
+              <a routerLink="/resendcode" style="font-weight: 700;" class="cursorHand"> / Resend verication code</a>
+            </form>
+            <div class="alert alert-danger" *ngIf="errorMessage!=null">
+              <strong>Alert !</strong> {{errorMessage}}
+            </div>
+            <div class="alert alert-danger" *ngIf="Code.touched && Code.errors">
+              <div *ngIf="Code.errors.required">
+                <strong>Alert !</strong><span>Please enter confermation code</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
